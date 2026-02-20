@@ -1,34 +1,49 @@
 # AI-Driven Support Triage: Analisador Inteligente de Chamados 🤖🚀
 
-Este projeto demonstra a aplicação prática de **Inteligência Artificial (NLP)** e **Engenharia de Dados** para otimizar fluxos de atendimento técnico e suporte, alinhando-se aos requisitos de análise de sistemas e suprimento de IA.
+Este projeto utiliza **Processamento de Linguagem Natural (NLP)** e **Engenharia de Dados** para automatizar a triagem de chamados técnicos, classificando-os por prioridade crítica instantaneamente.
 
 ## 🎯 Objetivo
-Automatizar a triagem e classificação de chamados técnicos utilizando Processamento de Linguagem Natural (NLP). O sistema analisa o tom emocional do relato do usuário para definir prioridades críticas instantaneamente e preparar os dados para modelos de linguagem (LLMs).
+Reduzir o tempo de resposta do suporte técnico, identificando urgências através de análise de tom emocional e termos técnicos críticos em relatos de usuários.
 
-## 🛠️ Funcionalidades
-- **Data Cleaning & Quality:** Tratamento de dados brutos, remoção de ruídos e padronização de textos utilizando a biblioteca **Pandas**.
-- **Sentiment Analysis (IA):** Implementação de inteligência artificial para detectar urgência e termos críticos nos relatos, elevando a prioridade de chamados automaticamente através de análise de sentimento.
-- **AI Supply (Suprimento de IA):** Estruturação de dados em formatos otimizados para Engenharia de Prompt, prontos para integração com APIs de IA de larga escala.
-- **Automação de Relatórios:** Geração de arquivos CSV inteligentes que permitem aos gestores focar nos problemas de maior impacto.
+## 🛠️ Funcionalidades e Melhorias
+- **CLI Dinâmica:** Agora o script aceita arquivos CSV externos via linha de comando (`--input` e `--output`).
+- **Lógica de Sentimento Refinada:** Combinação de análise de polaridade (`TextBlob`) com detecção de gatilhos críticos específicos para o cenário de TI.
+- **Integração com Gemini API:** Geração automática de sugestões de solução técnica utilizando IA Generativa (opcional).
+- **Tratamento de Erros:** Validação de colunas e suporte a codificação UTF-8 para garantir que acentos e caracteres especiais não quebrem o processamento.
 
 ## 💻 Tecnologias
 - **Linguagem:** Python 3.x
-- **Bibliotecas:** Pandas (Dados) e TextBlob (IA/NLP)
+- **Bibliotecas:** Pandas, TextBlob, Google Generative AI
 - **Controle de Versão:** Git
 
-## 🔄 Personalização e Escalabilidade
-
-O projeto foi estruturado de forma modular para que os dados de teste possam ser facilmente substituídos por fontes reais de produção:
-
-- **Arquivos Externos:** Para analisar seus próprios chamados, basta substituir a estrutura de dicionário inicial por uma leitura de arquivo CSV ou Excel:
-  ```python
-  df = pd.read_csv('seus_chamados.csv')
-  
 ## 🚀 Como executar
-1. Instale as dependências: 
-   ```bash
-   pip install pandas textblob
 
-2. Execute o script principal
+1. **Instale as dependências:** 
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. **Execute com os dados de exemplo:**
     ```bash
     python main.py
+    ```
+
+3. **Execute com seus próprios dados (CSV):**
+    ```bash
+    python main.py --input seus_chamados.csv --output relatorio_final.csv
+    ```
+
+4. **[AVANÇADO] Gerar sugestões com IA (Gemini):**
+    Primeiro, defina sua chave de API como uma variável de ambiente:
+    - **Windows:** `set GEMINI_API_KEY=sua_chave_aqui`
+    - **Linux/Mac:** `export GEMINI_API_KEY=sua_chave_aqui`
+    
+    Depois execute com a flag `--ai`:
+    ```bash
+    python main.py --ai
+    ```
+
+## 📈 Próximos Passos (Roadmap)
+- [ ] **Dashboard Streamlit:** Visualização gráfica da volumetria de chamados por prioridade.
+- [ ] **Modelos Específicos para PT-BR:** Implementação do SpaCy ou Transformers para análise semântica mais profunda em português.
+- [ ] **Interface Web:** Uma página simples para colar relatos e receber a triagem na hora.
